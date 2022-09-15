@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Silla
   - mesa
+  - NPC
+  - Red Lights
+  - Green Lights
   layers:
   - Default
   - TransparentFX
