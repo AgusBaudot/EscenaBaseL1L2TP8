@@ -24,6 +24,9 @@ public class ApagarDispositivo : MonoBehaviour
     [SerializeField] int counter = 0;
     [SerializeField] bool isInside = false;
     CounterManager counterManager;
+    SceneManager sceneManager;
+    public AudioClip song;
+    public AudioSource source;
 
 // Start is called before the first frame update
     void Start()
@@ -35,6 +38,7 @@ public class ApagarDispositivo : MonoBehaviour
         if (gameObject.name == "PuertaCajaElectrica.001")
         {
             mesh = gameObject.GetComponent<MeshRenderer>();
+            source.PlayOneShot(song);
         }
         if (gameObject.name == "Impresora")
         {
@@ -50,6 +54,7 @@ public class ApagarDispositivo : MonoBehaviour
         counterManager = GameObject.Find("[Counter Manager]").GetComponent<CounterManager>();
         text.enabled = false;
         objetosEncontrados.enabled = false;
+        sceneManager = GameObject.Find("[Scene Manager]").GetComponent<SceneManager>();
     }
 
     // Update is called once per frame
@@ -78,6 +83,7 @@ public class ApagarDispositivo : MonoBehaviour
                 colliderSpeakers.enabled = false;
                 isInside = false;
                 text.enabled = false;
+                source.Stop();
             }
             if(gameObject.name == "Gabinete")
             {
@@ -89,10 +95,18 @@ public class ApagarDispositivo : MonoBehaviour
                 text.enabled = false;
             }
         }
-        if (dialogue.hasTalked)
+        if (dialogue.hasTalked && !sceneManager.disappearText)
         {
-            objetosEncontrados.text = "Encontraste " + counterManager.counter + "/3 de los objetos";
-            objetosEncontrados.enabled = true;
+            if(counterManager.counter != 1)
+            {
+                objetosEncontrados.text = "Encontraste " + counterManager.counter + " objetos de los 3.";
+                objetosEncontrados.enabled = true;
+            }
+            if (counterManager.counter == 1)
+            {
+                objetosEncontrados.text = "Encontraste " + counterManager.counter + " objeto de los 3.";
+                objetosEncontrados.enabled = true;
+            }
         }
         if (dialogue.hasKey)
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class SceneManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class SceneManager : MonoBehaviour
     public Image blackOut;
     public Text ending;
     GameObject player;
+    ApagarDispositivo apagarDispositivo;
+    public bool disappearText = false;
 
     // Start is called before the first frame update
     void Start()
@@ -17,8 +20,9 @@ public class SceneManager : MonoBehaviour
         counterManager = GameObject.Find("[Counter Manager]").GetComponent<CounterManager>();
         dialogue = GameObject.Find("NPC").GetComponent<Dialogue>();
         player = GameObject.Find("NPC");
-        //blackOut.canvasRenderer.SetAlpha(0);
+        blackOut.canvasRenderer.SetAlpha(0);
         ending.enabled = false;
+        apagarDispositivo = GameObject.Find("PuertaCajaElectrica.001").GetComponent<ApagarDispositivo>();
     }
 
     // Update is called once per frame
@@ -29,19 +33,16 @@ public class SceneManager : MonoBehaviour
             player.GetComponent<MeshRenderer>().enabled = false;
             if (dialogue.isGone && Input.GetKeyDown(KeyCode.E))
             {
+                disappearText = true;
                 blackOut.canvasRenderer.SetAlpha(1);
                 Debug.Log("Lost");
-                ending.text = "Imaginate perder que malo que sos";
+                ending.text = "Escuchas a los chicos jugar afuera..." + Environment.NewLine + "Sabes que nunca vas a poder salir..." + Environment.NewLine + "Te quedaste encerrado en TIC para siempre..." + Environment.NewLine + "Nunca fuiste encontrado...";
                 ending.enabled = true;
+                dialogue.source.PlayOneShot(dialogue.gameOver);
+                dialogue.text.enabled = false;
+                dialogue.timeLeft.enabled = false;
+                apagarDispositivo.objetosEncontrados.enabled = false;
             }
         }
-        //if (dialogue.hasCompleted) Si sale, le muestro esto, detecto si sale midiendo el trigger de la puerta.
-        //{
-        //    //Fade to a victory scene.
-        //    blackOut.enabled = true;
-        //    Debug.Log("Win");
-        //    ending.text = "GG WP";
-        //    ending.enabled = true;
-        //}
     }
 }
