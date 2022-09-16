@@ -38,6 +38,7 @@ public class SceneManager : MonoBehaviour
                 Debug.Log("Lost");
                 ending.text = "Escuchas a los chicos jugar afuera..." + Environment.NewLine + "Sabes que nunca vas a poder salir..." + Environment.NewLine + "Te quedaste encerrado en TIC para siempre..." + Environment.NewLine + "Nunca fuiste encontrado...";
                 ending.enabled = true;
+                ending.canvasRenderer.SetAlpha(1);
                 dialogue.source.PlayOneShot(dialogue.gameOver);
                 dialogue.text.enabled = false;
                 dialogue.timeLeft.enabled = false;
