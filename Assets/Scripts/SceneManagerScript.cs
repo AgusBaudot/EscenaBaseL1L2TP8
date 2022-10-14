@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class SceneManager : MonoBehaviour
+public class SceneManagerScript : MonoBehaviour
 {
     Dialogue dialogue;
     CounterManager counterManager;

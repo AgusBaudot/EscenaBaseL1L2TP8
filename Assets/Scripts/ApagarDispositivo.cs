@@ -24,7 +24,7 @@ public class ApagarDispositivo : MonoBehaviour
     [SerializeField] int counter = 0;
     [SerializeField] bool isInside = false;
     CounterManager counterManager;
-    SceneManager sceneManager;
+    SceneManagerScript sceneManager;
     public AudioClip song;
     public AudioSource source;
 
@@ -54,7 +54,7 @@ public class ApagarDispositivo : MonoBehaviour
         counterManager = GameObject.Find("[Counter Manager]").GetComponent<CounterManager>();
         text.enabled = false;
         objetosEncontrados.enabled = false;
-        sceneManager = GameObject.Find("[Scene Manager]").GetComponent<SceneManager>();
+        sceneManager = GameObject.Find("[Scene Manager]").GetComponent<SceneManagerScript>();
     }
 
     // Update is called once per frame

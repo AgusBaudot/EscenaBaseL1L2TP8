@@ -10,7 +10,7 @@ public class Salida : MonoBehaviour
     public Text salida;
     public Text ending;
     [SerializeField] bool isClose = false;
-    SceneManager sceneManager;
+    SceneManagerScript sceneManager;
     ApagarDispositivo apagarDispositivo;
     public AudioSource source;
     public AudioClip gameWon;
@@ -20,7 +20,7 @@ public class Salida : MonoBehaviour
     {
         dialogue = dialogue = GameObject.Find("NPC").GetComponent<Dialogue>();
         salida.enabled = false;
-        sceneManager = GameObject.Find("[Scene Manager]").GetComponent<SceneManager>();
+        sceneManager = GameObject.Find("[Scene Manager]").GetComponent<SceneManagerScript>();
         sceneManager.blackOut.canvasRenderer.SetAlpha(0);
         apagarDispositivo = GameObject.Find("PuertaCajaElectrica.001").GetComponent<ApagarDispositivo>();
         ending.canvasRenderer.SetAlpha(0);
